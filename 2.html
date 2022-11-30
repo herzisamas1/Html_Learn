@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #1e90ff;
+  --white: #ffffff; 
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+h3 {
+  border-bottom: 2px solid var(--blue);
+}
+
+/* --------------图片框 -------------*/
+
+div.polaroid {
+  width: 30%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 35px 10px;
+  float:left;
+   padding:20px 15px;
+}
+  
+div.container {
+  text-align: center;
+  padding: 10px 10px;
+}
+
+/* --------------UL -------------*/
+
+ul.breadcrumb {
+  padding: 8px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+ul.breadcrumb li {display: inline;}
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+ul.breadcrumb li a {color: green;}
+
+/* --------------图片动画 -------------*/
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+imge {
+    display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%; 
+  height: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+/* --------------页眉/Blog 标题 */
+.header {
+  padding: 30px;
+  text-align: center;
+  background: white;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/*------------- 设置上导航栏的样式 */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/*---------- 设置 topnav 链接的样式 */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 16px 36px;
+  text-decoration: none; 
+}
+.topnav a.active { 
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ----------改变鼠标悬停时的颜色 */
+.topnav a:hover { 
+  background-color: #4CAF50;
+  color: white; 
+}
+
+/* 在宽度为 600 像素或更小的屏幕上，使菜单链接彼此堆叠，而不是并排 */
+@media screen and (max-width: 600px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+
+/* 创建并排的四个等列 */
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+} 
+
+/* 响应式布局 - 创建两列而不是四列布局 */
+@media (max-width: 800px) {
+   .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* 响应式布局 - 创建上下堆叠而不是并排的两列布局 */
+@media (max-width: 600px) {
+  .column, .leftcolumn, .rightcolumn{
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+/* ------------创建两个不相等的彼此并排的浮动列 */
+/* --------------------左列---------------------------- */
+.leftcolumn {   
+  float: left;
+  width: 75%;  
+}
+
+/* -------------右列------------------------------------------ */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* ------------伪图像 */
+.fakeimg {
+  background-color: #aaa;
+
+  background-color: var(--blue);
+  width: 100%;
+  padding: 20px;
+  resize: horizontal;
+  overflow: auto;
+}
+
+/* -----------为文章添加卡片效果 */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* -----------新闻分页 */
+.newspaper {
+  column-count: 3;
+  column-width: 100px;
+  column-gap: 40px;
+  column-rule-style: solid;
+  column-rule-width: 1px;
+  column-rule-color: lightblue;
+}
+
+.newspaper h2 {
+  column-span: all;
+}
+
+/* -----------容器--------------- */
+.flex-container {
+  display: flex;
+  justify-content: center;
+  background-color: DodgerBlue; 
+  align-items: center;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* -----------清除列之后的浮动 */ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* -------------页脚 */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/*-------------- 响应式布局 - 当屏幕的宽度小于 800 像素时，使两列堆叠而不是并排 */
+@media screen and (max-width: 800px) {
+ .column, .leftcolumn, .rightcolumn,div.polaroid {   
+    width: 100%;
+    padding: 0;
+    float: none; 
+  }
+}
+  
+/* --------------响应式布局 - 当屏幕的宽度小于 400 像素时，使导航链接堆叠而不是并排 */
+@media screen and (max-width: 600px) {
+ .row  {
+ flex-direction: column;
+  }
+}
+/* -------------按钮 */
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px; 
+  opacity: 0.6;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  box-shadow: 10px 9px #999;
+}
+
+.button:hover {background-color: #3e8e41;opacity: 1;}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* -------------分页 */
+.center {
+  text-align: center;
+}
+
+.pagination { 
+  display: inline-block; 
+} 
+.pagination:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 36px; 
+  font-size: 22px;
+  transition: background-color .3s;
+  text-decoration: none;
+  margin: 0 4px;
+}
+.pagination a.active {
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/*-------------- 响应式布局 - 当屏幕的宽度小于 800 像素时，使两列堆叠而不是并排 */
+@media screen and (max-width: 800px) {
+  .pagination a  {    
+    padding: 10px;
+  }
+}
+
+</style>
+ 
+<script>
+// 获取根元素
+var r = document.querySelector(':root');
+
+// 创建获取变量值的函数
+function myFunction_get() {
+  // 获取根的样式（属性和值）
+  var rs = getComputedStyle(r);
+  // 弹出 --blue 变量的值
+  alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
+}
+
+// 创建设置变量值的函数
+function myFunction_set() {
+  // 把变量 --blue 的值设置为另一个值（在这里是 "lightblue"）
+  r.style.setProperty('--blue', 'lightblue');
+}
+</script>
+
+
+
+</head>
+<body>
+
+<div class="header">
+
+  <h1>My Website</h1>
+  <p>Resize the browser window to see the effect.</p> 
+
+<p>前进后退按钮：</p>
+<div class="pagination">
+  <a href="#">❮</a>
+  <a href="#">❯</a>
+</div> 
+
+</div> 
+
+<div class="topnav">
+  <a href="#" class="active">Link</a>
+  <a href="#">Link</a>
+  <a href="#">Link</a>
+  <a href="#" style="float:right">Link</a>
+</div>
+
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card"> 
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+
+<div class="row">   
+
+
+<div class="polaroid">
+<div class="container"> 
+  <img src="2.jpg" alt="Avatar" style="width:100%" class="image"> 
+  <div class="overlay">
+    <div class="text">不会的，我不会下班的</div>
+  </div>  
+</div> 
+  <div class="container">
+  <p>不会的，我不会下班的</p>
+  </div>
+</div> 
+
+
+<div class="polaroid">
+<div class="container"> 
+  <img src="2.jpg" alt="Avatar" style="width:100%" class="image"> 
+  <div class="overlay">
+    <div class="text">我的工作永远都做不完的</div>
+  </div>  
+</div> 
+  <div class="container">
+  <p>我的工作永远都做不完的</p>
+  </div>
+</div> 
+
+<div class="polaroid">
+<div class="container"> 
+  <img src="2.jpg" alt="Avatar" style="width:100%" class="image"> 
+  <div class="overlay">
+    <div class="text">我不下班，我对公司很有感情</div>
+  </div>  
+</div> 
+  <div class="container">
+  <p>我不下班，我对公司很有感情</p>
+  </div>
+</div>
+
+ 
+
+ </div>
+
+      <button class="button" style="vertical-align:middle"><span>请悬停在我上方</span></button>
+
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+
+
+    <div class="card">
+
+<h1>面包屑分页</h1> 
+<ul class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pictures</a></li>
+  <li><a href="#">Summer 15</a></li>
+  <li>Italy</li>
+</ul>
+ 
+      <h5>Title description, Sep 2, 2017</h5>
+
+       <img src="3.jpg" style="width:100%">
+<p>"flex-direction: column;" 垂直堆叠弹性项目（从上到下）：</p> 
+<div class="flex-container">
+  <div>1</div>
+  <div style="flex-basis: 200px">2</div>
+  <div style="flex-shrink: 0">3</div>  
+  <div style="flex: 0 0 200px">1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>  
+</div>
+
+      <p>Some text..</p>
+
+      <div class="newspaper">
+<h2>第一回 宴桃园豪杰三结义 斩黄巾英雄首立功</h2>
+话说天下大势，分久必合，合久必分：周末七国分争，并入于秦；及秦灭之后，楚、汉分争，又并入于汉；汉朝自高祖斩白蛇而起义，一统天下，后来光武中兴，传至献帝，遂分为三国。推其致乱之由，殆始于桓、灵二帝。桓帝禁锢善类，崇信宦官。及桓帝崩，灵帝即位，大将军窦武、太傅陈蕃，共相辅佐；时有宦官曹节等弄权，窦武、陈蕃谋诛之，机事不密，反为所害，中涓自此愈横。建宁二年四月望日，帝御温德殿。方升座，殿角狂风骤起，只见一条大青蛇，从梁上飞将下来，蟠于椅上。帝惊倒，左右急救入宫，百官俱奔避。须臾，蛇不见了。忽然大雷大雨，加以冰雹，落到半夜方止，坏却房屋无数。建宁四年二月，洛阳地震；又海水泛溢，沿海居民，尽被大浪卷入海中。光和元年，雌鸡化雄。六月朔，黑气十馀丈，飞入温德殿中。秋七月，有虹现于玉堂，五原山岸，尽皆崩裂。种种不祥，非止一端。帝下诏问群臣以灾异之由，议郎蔡邕上疏，以为蜺堕鸡化，乃妇寺干政之所致，言颇切直。帝览奏叹息，因起更衣。曹节在后窃视，悉宣告左右；遂以他事陷邕于罪，放归田里。后张让、赵忠、封谞、段珪、曹节、侯览、蹇硕、程旷、夏恽、郭胜十人朋比为奸，号为“十常侍”。帝尊信张让，呼为“阿父”。朝政日非，以致天下人心思乱，盗贼蜂起。话说天下大势，分久必合，合久必分：周末七国分争，并入于秦；及秦灭之后，楚、汉分争，又并入于汉；汉朝自高祖斩白蛇而起义，一统天下，后来光武中兴，传至献帝，遂分为三国。推其致乱之由，殆始于桓、灵二帝。桓帝禁锢善类，崇信宦官。及桓帝崩，灵帝即位，大将军窦武、太傅陈蕃，共相辅佐；时有宦官曹节等弄权，窦武、陈蕃谋诛之，机事不密，反为所害，中涓自此愈横。建宁二年四月望日，帝御温德殿。方升座，殿角狂风骤起，只见一条大青蛇，从梁上飞将下来，蟠于椅上。帝惊倒，左右急救入宫，百官俱奔避。须臾，蛇不见了。忽然大雷大雨，加以冰雹，落到半夜方止，坏却房屋无数。建宁四年二月，洛阳地震；又海水泛溢，沿海居民，尽被大浪卷入海中。光和元年，雌鸡化雄。六月朔，黑气十馀丈，飞入温德殿中。秋七月，有虹现于玉堂，五原山岸，尽皆崩裂。种种不祥，非止一端。帝下诏问群臣以灾异之由，议郎蔡邕上疏，以为蜺堕鸡化，乃妇寺干政之所致，言颇切直。帝览奏叹息，因起更衣。曹节在后窃视，悉宣告左右；遂以他事陷邕于罪，放归田里。后张让、赵忠、封谞、段珪、曹节、侯览、蹇硕、程旷、夏恽、郭胜十人朋比为奸，号为“十常侍”。帝尊信张让，呼为“阿父”。朝政日非，以致天下人心思乱，盗贼蜂起。话说天下大势，分久必合，合久必分：周末七国分争，并入于秦；及秦灭之后，楚、汉分争，又并入于汉；汉朝自高祖斩白蛇而起义，一统天下，后来光武中兴，传至献帝，遂分为三国。推其致乱之由，殆始于桓、灵二帝。桓帝禁锢善类，崇信宦官。及桓帝崩，灵帝即位，大将军窦武、太傅陈蕃，共相辅佐；时有宦官曹节等弄权，窦武、陈蕃谋诛之，机事不密，反为所害，中涓自此愈横。建宁二年四月望日，帝御温德殿。方升座，殿角狂风骤起，只见一条大青蛇，从梁上飞将下来，蟠于椅上。帝惊倒，左右急救入宫，百官俱奔避。须臾，蛇不见了。忽然大雷大雨，加以冰雹，落到半夜方止，坏却房屋无数。建宁四年二月，洛阳地震；又海水泛溢，沿海居民，尽被大浪卷入海中。光和元年，雌鸡化雄。六月朔，黑气十馀丈，飞入温德殿中。秋七月，有虹现于玉堂，五原山岸，尽皆崩裂。种种不祥，非止一端。帝下诏问群臣以灾异之由，议郎蔡邕上疏，以为蜺堕鸡化，乃妇寺干政之所致，言颇切直。帝览奏叹息，因起更衣。曹节在后窃视，悉宣告左右；遂以他事陷邕于罪，放归田里。后张让、赵忠、封谞、段珪、曹节、侯览、蹇硕、程旷、夏恽、郭胜十人朋比为奸，号为“十常侍”。帝尊信张让，呼为“阿父”。朝政日非，以致天下人心思乱，盗贼蜂起。
+</div> 
+    </div>
+
+
+<div class="card">
+<h1>1</h1>
+
+<div class="row"> 
+ <div class="column">
+    <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%"> 
+    <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%">  
+  </div> 
+  
+  <div class="column">
+    <img src="2.jpg" style="width:100%"> 
+        <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%"> 
+    <img src="1.jpg" style="width:100%"> 
+  </div>
+
+  <div class="column"> 
+        <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%"> 
+    <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%">  
+  </div>
+  <div class="column">
+    <img src="2.jpg" style="width:100%"> 
+        <img src="1.jpg" style="width:100%">
+    <img src="2.jpg" style="width:100%"> 
+    <img src="1.jpg" style="width:100%"> 
+  </div>
+ 
+
+</div>
+
+</div>
+
+  </div>
+
+
+
+  <div class="rightcolumn">
+    <div class="card">
+      <h3>About Me</h3>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+
+
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+      <textarea id="test">Textarea - 不可调整</textarea>
+<button type="button" onclick="myFunction_get()">使用 JavaScript 来获取 CSS 变量</button>
+<button type="button" onclick="myFunction_set()">使用 JavaScript 来更改 CSS 变量</button>
+
+    </div>
+  </div>
+</div>
+
+<h1>简单分页</h1>
+<div class="center"> 
+<div class="pagination">
+  <a href="#">«</a>
+  <a href="#">1</a>
+  <a class="active" href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">»</a>
+</div>
+</div> 
+
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+
+</body>
+</html>
