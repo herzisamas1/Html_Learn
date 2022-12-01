@@ -377,7 +377,8 @@ function myFunction_get() {
 // 创建设置变量值的函数
 function myFunction_set() {
   // 把变量 --blue 的值设置为另一个值（在这里是 "lightblue"）
-  r.style.setProperty('--blue', 'lightblue');
+  const color = window.prompt('请输入主题颜色')
+  r.style.setProperty('--blue', color);
 }
 </script>
 
