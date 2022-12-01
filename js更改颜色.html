@@ -61,6 +61,16 @@ var r = document.querySelector(':root');
   document.getElementById('myImage').src = pic;
 }
 
+function parentClickFunc(e) {
+  // 通过此方法分别实现处理对应的按钮点击事件，比如
+  // 点击 show 按钮执行addactive()
+  // 点击 点击我！按钮执行myFunction()
+  // 关键字：js 事件委托
+  // TODO
+
+  
+}
+
 </script>
 
 
@@ -69,9 +79,9 @@ var r = document.querySelector(':root');
 
   
 <!-- 注释 --> 
-<div class="container">
-   <button class="open-btn" onclick="addactive()">show </button> 
-   <button  class="open-btn" type="button" onclick="myFunction()">
+<div onclick="parentClickFunc(this)" class="container">
+   <button class="open-btn btn1" >show </button> 
+   <button  class="open-btn btn2" type="button" >
     点击我！
   </button>
    <p id="demo">JavaScript 可以更改 HTML 元素的样式。</p>
