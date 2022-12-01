@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>
+<title> JSS </title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--custom css file link--> 
+
+<link rel="stylesheet" href="css/style.css">
+ 
+<script>
+
+ // 获取根元素
+var r = document.querySelector(':root'); 
+// function add(a,b) {
+//  // 获取根的样式（属性和值）
+//    var rs = getComputedStyle(r);
+//   // 弹出 --blue 变量的值
+//   alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
+//   }
+ 
+  function changecolor(colora,colorb) {
+ // 获取根的样式（属性和值） 
+    r.style.setProperty('--bg', colora);
+    r.style.setProperty('--p', colorb);
+    document.getElementById("demo").style.fontSize = "25px"; 
+    document.getElementById("demo").style.color = colora;
+    document.getElementById("demo").style.backgroundColor = colorb;    
+  }
+
+  document.querySelector('.open-btn').onclick = () =>{
+    document.querySelector('.cookies-box').classList.add('active');
+  } 
+
+  document.querySelector('.close-btn').onclick=()=>{
+    document.querySelector('.cookies-box').classList.remove('active');
+  }
+
+  function addactive() {
+    document.querySelector('.cookies-box').classList.add('active');
+  }
+
+  function removeactive() {
+    document.querySelector('.cookies-box').classList.remove('active');
+  }
+
+  function myFunction() {
+    document.getElementById("demo").style.fontSize = "25px"; 
+    document.getElementById("demo").style.color = "red";
+    document.getElementById("demo").style.backgroundColor = "yellow";        
+  }
+
+  function light(sw) {
+  var pic;
+  if (sw == 0) {
+    pic = "/i/eg_bulboff.gif"
+  } else {
+    pic = "/i/eg_bulbon.gif"
+  }
+  document.getElementById('myImage').src = pic;
+}
+
+</script>
+
+
+</head> 
+<body>
+
+  
+<!-- 注释 --> 
+<div class="container">
+   <button class="open-btn" onclick="addactive()">show </button> 
+   <button  class="open-btn" type="button" onclick="myFunction()">
+    点击我！
+  </button>
+   <p id="demo">JavaScript 可以更改 HTML 元素的样式。</p>
+  </div>
+</div>
+
+<div class="cookies-box">
+  <span class="close-btn" onclick="removeactive()">&times;</span>
+
+  <img src="image/2.jpg" alt="我不会下班的">
+  <h3>我不会下班的</h3>
+  <p>我不会下班的，我的工作永远都不完</p>
+
+  <a href="#" class="accept" onclick="removeactive()">下班</a>
+  <a href="#" class="setting">setting</a>
+
+  <div>
+    <form action="/action_page.php">
+      <label for="fname">背景颜色</label>
+       <input type="text" id="colora" name="firstname" placeholder="输入颜色..">
+  
+      <label for="lname">字体颜色</label>
+       <input type="text" id="colorb" name="lastname" placeholder="输入颜色..">
+  
+      <label for="country">Country</label>
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">China</option>
+        <option value="usa">USA</option>
+      </select>
+      
+      <!--<button onclick="add(document.getElementById('colora').value,document.getElementById('colorb').value)">Add</button>
+      <button onclick="changecolor(document.getElementById('colora').value,document.getElementById('colorb').value)">
+        -->
+      <input class="submit" value="确认" onclick="changecolor(document.getElementById('colora').value,document.getElementById('colorb').value)">
+    </form>
+  </div>
+
+
+</div>
+
+
+
+</body>
+</html>
