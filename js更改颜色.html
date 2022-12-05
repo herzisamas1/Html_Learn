@@ -7,79 +7,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--custom css file link--> 
 
-<link rel="stylesheet" href="css/style.css">
- 
-<script>
-
- // 获取根元素
-var r = document.querySelector(':root'); 
-// function add(a,b) {
-//  // 获取根的样式（属性和值）
-//    var rs = getComputedStyle(r);
-//   // 弹出 --blue 变量的值
-//   alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
-//   }
- 
-  function changecolor(colora,colorb) {
- // 获取根的样式（属性和值） 
-    r.style.setProperty('--bg', colora);
-    r.style.setProperty('--p', colorb);
-    document.getElementById("demo").style.fontSize = "25px"; 
-    document.getElementById("demo").style.color = colora;
-    document.getElementById("demo").style.backgroundColor = colorb;    
-  }
-
-  document.querySelector('.open-btn').onclick = () =>{
-    document.querySelector('.cookies-box').classList.add('active');
-  } 
-
-  document.querySelector('.close-btn').onclick=()=>{
-    document.querySelector('.cookies-box').classList.remove('active');
-  }
-
-  function addactive() {
-    document.querySelector('.cookies-box').classList.add('active');
-  }
-
-  function removeactive() {
-    document.querySelector('.cookies-box').classList.remove('active');
-  }
-
-  function myFunction() {
-    document.getElementById("demo").style.fontSize = "25px"; 
-    document.getElementById("demo").style.color = "red";
-    document.getElementById("demo").style.backgroundColor = "yellow";        
-  }
-
-  function light(sw) {
-  var pic;
-  if (sw == 0) {
-    pic = "/i/eg_bulboff.gif"
-  } else {
-    pic = "/i/eg_bulbon.gif"
-  }
-  document.getElementById('myImage').src = pic;
-}
-
-function parentClickFunc(e) {
-  // 通过此方法分别实现处理对应的按钮点击事件，比如
-  // 点击 show 按钮执行addactive()
-  // 点击 点击我！按钮执行myFunction()
-  // 关键字：js 事件委托
-  // TODO
-
-  
-}
-
-</script>
-
+<link rel="stylesheet" href="css/style.css"> 
 
 </head> 
 <body>
 
   
 <!-- 注释 --> 
-<div onclick="parentClickFunc(this)" class="container">
+<div onclick="parentClickFunc(event)" class="container" id="btns">
+  <button class="open-btn" id="addbtn">添加button</button>
    <button class="open-btn btn1" >show </button> 
    <button  class="open-btn btn2" type="button" >
     点击我！
@@ -123,7 +59,98 @@ function parentClickFunc(e) {
 
 </div>
 
+<script>
+var addbtn=document.getElementById('addbtn');
+var btns=document.getElementById('btns');
 
+
+addbtn.onclick=function(){
+  var newbtn=document.createElement('button');
+  newbtn.innerHTML='后添加的';
+  newbtn.className="open-btn" ;
+  btns.appendChild(newbtn);
+}
+
+
+
+  // 获取根元素
+ var r = document.querySelector(':root'); 
+ // function add(a,b) {
+ //  // 获取根的样式（属性和值）
+ //    var rs = getComputedStyle(r);
+ //   // 弹出 --blue 变量的值
+ //   alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
+ //   }
+  
+   function changecolor(colora,colorb) {
+  // 获取根的样式（属性和值） 
+     r.style.setProperty('--bg', colora);
+     r.style.setProperty('--p', colorb);
+     document.getElementById("demo").style.fontSize = "25px"; 
+     document.getElementById("demo").style.color = colora;
+     document.getElementById("demo").style.backgroundColor = colorb;    
+   }
+ 
+  //  document.querySelector('.open-btn').onclick = () =>{
+  //    document.querySelector('.cookies-box').classList.add('active');
+  //  } 
+ 
+   document.querySelector('.close-btn').onclick=()=>{
+     document.querySelector('.cookies-box').classList.remove('active');
+   }
+ 
+   function addactive() {
+     document.querySelector('.cookies-box').classList.add('active');
+   }
+ 
+   function removeactive() {
+     document.querySelector('.cookies-box').classList.remove('active');
+   }
+ 
+   function myFunction() {
+     document.getElementById("demo").style.fontSize = "25px"; 
+     document.getElementById("demo").style.color = "red";
+     document.getElementById("demo").style.backgroundColor = "yellow";        
+   }
+ 
+   function light(sw) {
+   var pic;
+   if (sw == 0) {
+     pic = "/i/eg_bulboff.gif"
+   } else {
+     pic = "/i/eg_bulbon.gif"
+   }
+   document.getElementById('myImage').src = pic;
+ }
+ 
+ function parentClickFunc(e) {
+   // 通过此方法分别实现处理对应的按钮点击事件，比如
+   // 点击 show 按钮执行addactive()
+   // 点击 点击我！按钮执行myFunction()
+   // 关键字：js 事件委托
+   // TODO
+
+   console.log(event.target.className);
+  if(event.target.className=="open-btn btn1")
+   {
+    console.log("addactive()");
+    addactive();
+   }else if(event.target.className=="open-btn")
+   {
+    console.log("myFunction()");
+    e.target.style.background='red'
+    myFunction();
+   }
+ } 
+
+// btns.onclick=function(e){
+//   console.log("btns.onclick");
+//   if(e.target.nodeName=="BUTTON"&&e.target.className!="open-btn btn1"){
+//     e.target.style.background='red';
+//     myFunction();
+//   }
+// }  
+ </script>
 
 </body>
 </html>
