@@ -60,114 +60,23 @@
 </div>
 
 <script>
-var addbtn=document.getElementById('addbtn');
-var btns=document.getElementById('btns');
 
+/*
+2022-12-08 作业
+实现一个方法通过传入一个dom元素然后获取其所有子节点数
 
-addbtn.onclick=function(){
-  var newbtn=document.createElement('button');
-  newbtn.innerHTML='后添加的';
-  newbtn.className="open-btn" ;
-  btns.appendChild(newbtn);
+例如输入：getNodeTree(document.getElementById('btns'))
+
+则应该输出：{ button: 3, p: 1 } // 有3个button元素和一个p元素
+*/
+
+function getNodeTree(container) {
+  // TODO
+  
 }
 
-
-
-  // 获取根元素
- var r = document.querySelector(':root'); 
- // function add(a,b) {
- //  // 获取根的样式（属性和值）
- //    var rs = getComputedStyle(r);
- //   // 弹出 --blue 变量的值
- //   alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
- //   }
-  
-   function changecolor(colora,colorb) {
-  // 获取根的样式（属性和值） 
-     r.style.setProperty('--bg', colora);
-     r.style.setProperty('--p', colorb);
-     document.getElementById("demo").style.fontSize = "25px"; 
-     document.getElementById("demo").style.color = colora;
-     document.getElementById("demo").style.backgroundColor = colorb;    
-   }
- 
-  //  document.querySelector('.open-btn').onclick = () =>{
-  //    document.querySelector('.cookies-box').classList.add('active');
-  //  } 
- 
-   document.querySelector('.close-btn').onclick=()=>{
-     document.querySelector('.cookies-box').classList.remove('active');
-   }
- 
-   function addactive() {
-     document.querySelector('.cookies-box').classList.add('active');
-   }
- 
-   function removeactive() {
-     document.querySelector('.cookies-box').classList.remove('active');
-   }
- 
-   function myFunction() {
-     document.getElementById("demo").style.fontSize = "25px"; 
-     document.getElementById("demo").style.color = "red";
-     document.getElementById("demo").style.backgroundColor = "yellow";        
-   }
- 
-   function light(sw) {
-   var pic;
-   if (sw == 0) {
-     pic = "/i/eg_bulboff.gif"
-   } else {
-     pic = "/i/eg_bulbon.gif"
-   }
-   document.getElementById('myImage').src = pic;
- }
- 
- function parentClickFunc(e) {
-   // 通过此方法分别实现处理对应的按钮点击事件，比如
-   // 点击 show 按钮执行addactive()
-   // 点击 点击我！按钮执行myFunction()
-   // 关键字：js 事件委托
-   // TODO
-
-   console.log("parentClickFunc"+event.target.className);
-  if(event.target.className=="open-btn btn1")
-   {
-    console.log("addactive()");
-    addactive();
-   }else if(event.target.className=="open-btn")
-   {
-    console.log("myFunction()");
-    e.target.style.background='red'
-    myFunction();
-   }
- } 
- btns.addEventListener('click', function(e) {
-  console.log("btns.onclick");
-
- })
-// btns.onclick=function(e){
-//   console.log("btns.onclick");
-//   if(e.target.nodeName=="BUTTON"&&e.target.className!="open-btn btn1"){
-//     e.target.style.background='red';
-//     myFunction();
-//   }
-// }  
-
-// $('country').change(Function(){
-//   console.log("btns.onclick");
-// });
-
-///修改语言
-var country=document.getElementById('country');
-var getoff=document.getElementById('getoff'); 
-var Language=["下班","放工","getoff"]; 
-country.addEventListener('change',function(e){
-  //console.log("changeLanguage"); 
-  //console.log(parseInt(country.value));  
-  getoff.innerHTML=Language[parseInt(country.value)];
-})
- </script>
+getNodeTree()
+</script>
 
 </body>
 </html>
