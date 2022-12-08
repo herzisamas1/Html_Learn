@@ -31,7 +31,7 @@
   <h3>我不会下班的</h3>
   <p>我不会下班的，我的工作永远都不完</p>
 
-  <a href="#" class="accept" onclick="removeactive()">下班</a>
+  <a href="#" class="accept" onclick="removeactive()" id="getoff">下班</a>
   <a href="#" class="setting">setting</a>
 
   <div>
@@ -42,11 +42,11 @@
       <label for="lname">字体颜色</label>
        <input type="text" id="colorb" name="lastname" placeholder="输入颜色..">
   
-      <label for="country">Country</label>
+      <label for="country">修改语言Language</label>
       <select id="country" name="country">
-        <option value="australia">Australia</option>
-        <option value="canada">China</option>
-        <option value="usa">USA</option>
+        <option value="0china">China</option>
+        <option value="1Cantonese">Cantonese</option>
+        <option value="2usa">USA</option>
       </select>
       
       <!--<button onclick="add(document.getElementById('colora').value,document.getElementById('colorb').value)">Add</button>
@@ -130,7 +130,7 @@ addbtn.onclick=function(){
    // 关键字：js 事件委托
    // TODO
 
-   console.log(event.target.className);
+   console.log("parentClickFunc"+event.target.className);
   if(event.target.className=="open-btn btn1")
    {
     console.log("addactive()");
@@ -142,7 +142,10 @@ addbtn.onclick=function(){
     myFunction();
    }
  } 
+ btns.addEventListener('click', function(e) {
+  console.log("btns.onclick");
 
+ })
 // btns.onclick=function(e){
 //   console.log("btns.onclick");
 //   if(e.target.nodeName=="BUTTON"&&e.target.className!="open-btn btn1"){
@@ -150,6 +153,20 @@ addbtn.onclick=function(){
 //     myFunction();
 //   }
 // }  
+
+// $('country').change(Function(){
+//   console.log("btns.onclick");
+// });
+
+///修改语言
+var country=document.getElementById('country');
+var getoff=document.getElementById('getoff'); 
+var Language=["下班","放工","getoff"]; 
+country.addEventListener('change',function(e){
+  //console.log("changeLanguage"); 
+  //console.log(parseInt(country.value));  
+  getoff.innerHTML=Language[parseInt(country.value)];
+})
  </script>
 
 </body>
