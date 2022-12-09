@@ -72,10 +72,23 @@
 
 function getNodeTree(container) {
   // TODO
-  
+  const res = {}
+
+  Object.keys(container.children).forEach(i => {
+    const ele = container.children.item(i)
+
+    if (typeof res[ele.tagName] === 'number') {
+      res[ele.tagName]++
+    } else {
+      res[ele.tagName] = 1
+    }
+
+  })
+
+  return res
 }
 
-getNodeTree()
+console.log(getNodeTree(document.querySelector('#btns')))
 </script>
 
 </body>
