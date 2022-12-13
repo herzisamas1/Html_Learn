@@ -72,21 +72,25 @@
 则应该输出：{ button: 3, p: 1 } // 有3个button元素和一个p元素
 */ 
  
-var arr=[];
-var idname="btns";
-var allNodeList;
+const arr=[];
+const idname="btns"; 
 
-getNodeTree(document.getElementById("btns"));  
-
+getNodeTree(document.getElementById("btns"));   
 function getNodeTree(container) {   
   //console.log("获取所有子");
-  allNodeList = container.children;   
+  const allNodeList = container.children;   
   for(var i=0;i<allNodeList.length;i++){
     arr.push(allNodeList[i].nodeName);
   }
   console.log(arr);
+  let type=arr.reduce((prearr,curItem) =>{
+  prearr[curItem] = prearr [curItem]?prearr[curItem] +1:1;
+  return prearr;
+},{})
+console.log(type);//type 是什么东西 不是对象也不是数组 
+console.log(type.value); 
 }
-  
+ 
   //console.log(arr); 
   // console.log("获取所有子节点");
   // var allNodeList = container.childNodes; 
@@ -98,9 +102,7 @@ function getNodeTree(container) {
    // console.log("nodeType:"+allNodeList[i].nodeType);
    // console.log("nodeName:"+allNodeList[i].nodeName);
     //console.log("nodeValue:"+allNodeList[i].nodeValue+"'"); 
-
  
-
 // let count =(arr)=>{
 //   let res= arr.reduce ((prearr,curItem) => {
 //       prearr[curItem] = prearr[curItem]?prearr[curItem] + 1 : 1 ;
@@ -108,25 +110,7 @@ function getNodeTree(container) {
 //     },{})
 //     return res;
 // } 
-let type=arr.reduce((prearr,curItem) =>{
-  if(curItem in prearr){
-    prearr[curItem]++
-  }else{
-    prearr[curItem]=1;
-  }
-  return prearr;
-},{})
 
-console.log(type); 
-//有时候输出结果{BUTTON: 5, P: 1}  有时候输出object
-console.log(idname+"have"+type); 
-//输出结果btnshave[object Object]
-var output="";
-for(var i=0;i<2;i++){
-  output+=( "有："+type[i]+""+type[i]+"\n");//没内容
-}
-console.log("output"+output);
- 
 </script>
 
 </body>
