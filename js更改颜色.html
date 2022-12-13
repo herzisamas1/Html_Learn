@@ -88,7 +88,12 @@ function getNodeTree(container) {
   return prearr;
 },{})
 console.log(type);//type 是什么东西 不是对象也不是数组 
-console.log(type.value); 
+var output=idname+" have:"+'\n';
+var x;
+for(x in type){
+  output+=x+"="+type[x]+'\n';
+}
+console.log(output); 
 }
  
   //console.log(arr); 
