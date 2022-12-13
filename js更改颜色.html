@@ -74,11 +74,28 @@
  
 const arr=[];
 const idname="btns"; 
-
-getNodeTree(document.getElementById("btns"));   
+const res={};
+console.log( getNodeTree(document.getElementById("btns")));   
 function getNodeTree(container) {   
   //console.log("获取所有子");
-  const allNodeList = container.children;   
+  const allNodeList = container.children;  
+  const res = {} 
+
+Object.keys(container.children).forEach(i => {
+  const ele = container.children.item(i) 
+  console.log(container.children[i]);
+  console.log(ele);
+  console.log(ele.tagName); 
+  console.log(res[ele.tagName]); 
+  console.log(typeof res[ele.tagName]); 
+  if (typeof res[ele.tagName] === 'number') {
+    res[ele.tagName]++
+  } else {
+    res[ele.tagName] = 1
+  }
+})  
+  //return res;
+   //2
   for(var i=0;i<allNodeList.length;i++){
     arr.push(allNodeList[i].nodeName);
   }
@@ -93,7 +110,7 @@ var x;
 for(x in type){
   output+=x+"="+type[x]+'\n';
 }
-console.log(output); 
+return output;
 }
  
   //console.log(arr); 
