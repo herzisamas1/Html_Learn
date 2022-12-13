@@ -16,11 +16,13 @@
 <!-- 注释 --> 
 <div onclick="parentClickFunc(event)" class="container" id="btns">
   <button class="open-btn" id="addbtn">添加button</button>
+  <button class="open-btn btn1" >show </button> 
    <button class="open-btn btn1" >show </button> 
-   <button  class="open-btn btn2" type="button" >
+  <button class="open-btn btn1" >show </button> 
+  <button class="open-btn btn2" type="button" >
     点击我！
   </button>
-   <p id="demo">JavaScript 可以更改 HTML 元素的样式。</p>
+  <p id="demo">JavaScript 可以更改 HTML 元素的样式。</p>
   </div>
 </div>
 
@@ -68,14 +70,63 @@
 例如输入：getNodeTree(document.getElementById('btns'))
 
 则应该输出：{ button: 3, p: 1 } // 有3个button元素和一个p元素
-*/
+*/ 
+ 
+var arr=[];
+var idname="btns";
+var allNodeList;
 
-function getNodeTree(container) {
-  // TODO
-  111
+getNodeTree(document.getElementById("btns"));  
+
+function getNodeTree(container) {   
+  //console.log("获取所有子");
+  allNodeList = container.children;   
+  for(var i=0;i<allNodeList.length;i++){
+    arr.push(allNodeList[i].nodeName);
+  }
+  console.log(arr);
 }
+  
+  //console.log(arr); 
+  // console.log("获取所有子节点");
+  // var allNodeList = container.childNodes; 
+  // console.log(allNodeList);
+  // for(var i=0; i<allNodeList.length;i++){
+  //   if(allNodeList[i].nodeName == "#text" && !/\s/.test(allNodeList.nodeValue)){
+  //   allNodeList[i].parentNode.removeChild(allNodeList[i]);
+  // } }   console.log(allNodeList); 
+   // console.log("nodeType:"+allNodeList[i].nodeType);
+   // console.log("nodeName:"+allNodeList[i].nodeName);
+    //console.log("nodeValue:"+allNodeList[i].nodeValue+"'"); 
 
-getNodeTree()
+ 
+
+// let count =(arr)=>{
+//   let res= arr.reduce ((prearr,curItem) => {
+//       prearr[curItem] = prearr[curItem]?prearr[curItem] + 1 : 1 ;
+//       return prearr;
+//     },{})
+//     return res;
+// } 
+let type=arr.reduce((prearr,curItem) =>{
+  if(curItem in prearr){
+    prearr[curItem]++
+  }else{
+    prearr[curItem]=1;
+  }
+  return prearr;
+},{})
+
+console.log(type); 
+//有时候输出结果{BUTTON: 5, P: 1}  有时候输出object
+console.log(idname+"have"+type); 
+//输出结果btnshave[object Object]
+var output="";
+for(var i=0;i<2;i++){
+  output+=( "有："+type[i]+""+type[i]+"\n");//没内容
+}
+console.log("output"+output);
+ 
 </script>
 
 </body>
